@@ -1,0 +1,17 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+        - config
+        - database
+        - routes
+
+    bootstrapFiles:
+        - vendor/larastan/larastan/bootstrap.php
+
+    # Level max is the highest level of static analysis
+    level: max
+
+    ignoreErrors: []
