@@ -1,78 +1,136 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
+import { ShieldCheck, MapTrifold, Receipt, LockSimple, GraduationCap } from '@phosphor-icons/react';
 import { Logo } from '@/components/shared/Logo';
+import { Button } from '@/components/ui/Button';
 
 interface WelcomeProps {
     appName?: string;
-    phpVersion?: string;
-    laravelVersion?: string;
+    _phpVersion?: string;
+    _laravelVersion?: string;
 }
 
 export const Welcome: React.FC<WelcomeProps> = ({
     appName = 'Pusat Kost UNNES',
-    phpVersion = '8.4',
-    laravelVersion = '12.x',
 }) => {
     return (
         <>
-            <Head title={`Selamat Datang — ${appName}`} />
+            <Head title={`Selamat Datang | ${appName}`} />
 
-            <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col justify-between selection:bg-[#FF6565] selection:text-white">
+            <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col justify-between selection:bg-primary selection:text-white">
                 {/* Navbar */}
                 <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <Logo variant="horizontal" className="h-9 sm:h-10" />
+                            <Logo variant="horizontal" className="h-9 sm:h-10 md:h-11" />
                         </div>
                         <div className="flex items-center gap-2 sm:gap-3">
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                                Milestone 0 Verified
-                            </span>
+                            <Link href="/kos">
+                                <Button variant="primary" size="sm" className="shadow-xs shadow-primary/30">
+                                    Jelajahi Kos UNNES →
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </header>
 
-                {/* Main Hero / Verification Card */}
+                {/* Main Hero Section */}
                 <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1 flex flex-col justify-center">
-                    <div className="max-w-3xl mx-auto text-center space-y-6">
-                        <div className="inline-flex items-center justify-center p-2 bg-white rounded-2xl shadow-sm border border-slate-200 mb-2">
-                            <Logo variant="square" className="h-16 w-16" />
+                    <div className="max-w-4xl mx-auto text-center space-y-7">
+                        {/* Trust Eyebrow */}
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-200 text-primary text-xs font-bold shadow-2xs">
+                            <GraduationCap weight="bold" className="w-4 h-4" />
+                            <span>Platform Pencarian & Sewa Kos Mahasiswa Universitas Negeri Semarang</span>
                         </div>
 
-                        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 font-sans">
-                            Platform Pencarian & Sewa Kost{' '}
-                            <span className="text-[#FF6565]">Sekitar Kampus UNNES</span>
+                        {/* Display Headline */}
+                        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 font-sans leading-[1.15]">
+                            Temukan Kos Nyaman, Dekat Fakultas,{' '}
+                            <span className="text-primary">Bebas Penipuan.</span>
                         </h1>
 
-                        <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                            Fondasi sistem arsitektur Modular Monolith, Strict TypeScript, Inertia.js v3, dan PostgreSQL 16 telah aktif dan terverifikasi secara menyeluruh.
+                        <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+                            Katalog kos putra, putri, dan campur terverifikasi di kawasan Sekaran, Banaran, Taman Siswa, dan seluruh gerbang kampus UNNES dengan jaminan ketersediaan kamar riil.
                         </p>
 
-                        {/* Stack Verification Badges */}
-                        <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
-                            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-                                <div className="text-xs text-slate-500 font-medium">Core Backend</div>
-                                <div className="text-sm font-semibold text-slate-900 mt-1">Laravel {laravelVersion}</div>
-                                <div className="text-xs text-slate-500">PHP {phpVersion} Strict</div>
+                        {/* CTA Buttons */}
+                        <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                            <Link href="/kos">
+                                <Button variant="primary" size="lg" className="shadow-lg shadow-primary/25 font-bold px-8 py-3.5 text-sm">
+                                    Cari Kos Sekarang
+                                </Button>
+                            </Link>
+                            <Link href="/owner/kos/create">
+                                <Button variant="outline" size="lg" className="border-slate-300 font-bold px-7 py-3.5 text-sm text-slate-700 hover:bg-slate-50">
+                                    Pasang Iklan Kos
+                                </Button>
+                            </Link>
+                        </div>
+
+                        {/* Campus Area Quick Links */}
+                        <div className="pt-8 border-t border-slate-200/80">
+                            <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                                Wilayah Populer Sekitar Kampus:
+                            </p>
+                            <div className="flex flex-wrap items-center justify-center gap-2">
+                                {[
+                                    { name: 'Sekaran', desc: 'Dekat Rektorat, FBS, FEB' },
+                                    { name: 'Banaran', desc: 'Dekat FT & FMIPA' },
+                                    { name: 'Taman Siswa', desc: 'Pusat Kuliner & Bank' },
+                                    { name: 'Gunungpati', desc: 'Dekat FIP & FIK' },
+                                    { name: 'Patemon', desc: 'Gerbang Belakang' },
+                                ].map((area) => (
+                                    <Link
+                                        key={area.name}
+                                        href={`/kos?area=${encodeURIComponent(area.name)}`}
+                                        className="px-3.5 py-1.5 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-700 transition-all shadow-2xs hover:border-slate-300"
+                                    >
+                                        {area.name} <span className="text-slate-400 font-normal">({area.desc})</span>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 4 Feature Highlights Grid */}
+                        <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+                            <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-1.5">
+                                <div className="w-10 h-10 rounded-2xl bg-primary-50 flex items-center justify-center text-primary">
+                                    <ShieldCheck weight="bold" className="w-5 h-5" />
+                                </div>
+                                <div className="text-sm font-bold text-slate-900">Verifikasi Dua Arah</div>
+                                <div className="text-xs text-slate-500 leading-relaxed">
+                                    Admin mengonfirmasi tenant dan owner via WhatsApp sebelum aktivasi sewa.
+                                </div>
                             </div>
 
-                            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-                                <div className="text-xs text-slate-500 font-medium">Frontend Stack</div>
-                                <div className="text-sm font-semibold text-slate-900 mt-1">React 19 & Inertia v3</div>
-                                <div className="text-xs text-slate-500">Tailwind CSS v4</div>
+                            <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-1.5">
+                                <div className="w-10 h-10 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                                    <MapTrifold weight="bold" className="w-5 h-5" />
+                                </div>
+                                <div className="text-sm font-bold text-slate-900">Peta Jarak Fakultas</div>
+                                <div className="text-xs text-slate-500 leading-relaxed">
+                                    Lihat batas resmi kampus UNNES 121 titik dan perkiraan waktu tempuh jalan kaki.
+                                </div>
                             </div>
 
-                            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-                                <div className="text-xs text-slate-500 font-medium">Database & Cache</div>
-                                <div className="text-sm font-semibold text-slate-900 mt-1">PostgreSQL 16</div>
-                                <div className="text-xs text-slate-500">Redis 7 In-Memory</div>
+                            <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-1.5">
+                                <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+                                    <Receipt weight="bold" className="w-5 h-5" />
+                                </div>
+                                <div className="text-sm font-bold text-slate-900">Kwitansi Digital Sah</div>
+                                <div className="text-xs text-slate-500 leading-relaxed">
+                                    Dapatkan invoice dan bukti pembayaran PDF resmi yang siap dicetak kapan saja.
+                                </div>
                             </div>
 
-                            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
-                                <div className="text-xs text-slate-500 font-medium">Quality Gate</div>
-                                <div className="text-sm font-semibold text-emerald-600 mt-1">PHPStan Level Max</div>
-                                <div className="text-xs text-slate-500">Pest & Pint Verified</div>
+                            <div className="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-xs space-y-1.5">
+                                <div className="w-10 h-10 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-600">
+                                    <LockSimple weight="bold" className="w-5 h-5" />
+                                </div>
+                                <div className="text-sm font-bold text-slate-900">Bebas Double-Booking</div>
+                                <div className="text-xs text-slate-500 leading-relaxed">
+                                    Proteksi stok kamar realtime dengan penguncian database saat checkout berlangsung.
+                                </div>
                             </div>
                         </div>
                     </div>

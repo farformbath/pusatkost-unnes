@@ -6,7 +6,11 @@
 
         <title inertia>{{ config('app.name', 'Pusat Kost UNNES') }}</title>
 
-        <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="apple-touch-icon" href="/favicon.png">
+        <link rel="shortcut icon" href="/favicon.ico">
 
         @viteReactRefresh
         @vite(['resources/js/app.tsx', 'resources/css/app.css'])

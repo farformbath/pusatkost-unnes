@@ -17,7 +17,7 @@ export const Logo: React.FC<LogoProps> = ({
             <img
                 src="/images/logo.jpg"
                 alt={alt}
-                className={cn('h-10 w-10 rounded-xl object-contain shadow-xs', className)}
+                className={cn('h-12 w-12 rounded-2xl object-contain shadow-xs', className)}
             />
         );
     }
@@ -26,9 +26,7 @@ export const Logo: React.FC<LogoProps> = ({
         <img
             src="/images/logo-horizontal.png"
             alt={alt}
-            className={cn('h-10 w-auto object-contain', className)}
+            className={cn('h-9 sm:h-10 md:h-11 w-auto object-contain transition-all', className)}
         />
     );
 };
-
-export default Logo;

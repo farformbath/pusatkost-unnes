@@ -1,9 +1,93 @@
 @import "tailwindcss";
 
+/* ============================================================
+   UNNESKost v3 - Design System Tokens
+   ============================================================
+   Brand: Pusat Kost UNNES - Student property rental platform
+   Primary: Coral Red #FF6565 (trust, warmth, action)
+   Neutrals: Slate scale (professional, clean)
+   ============================================================ */
+
 @theme {
-  --color-primary: #FF6565;
-  --color-primary-hover: #FA5252;
-  --color-primary-dark: #E03131;
-  --color-navy: #1E293B;
-  --color-slate-canvas: #F8FAFC;
+    /* ---- Primary Brand Color Scale ---- */
+    --color-primary-50: #FFF1F1;
+    --color-primary-100: #FFE0E0;
+    --color-primary-200: #FFC7C7;
+    --color-primary-300: #FFA3A3;
+    --color-primary-400: #FF7A7A;
+    --color-primary: #FF6565;
+    --color-primary-600: #FA5252;
+    --color-primary-700: #E03131;
+    --color-primary-800: #C92A2A;
+    --color-primary-900: #A51D1D;
+
+    /* ---- Surface & Background ---- */
+    --color-surface: #FFFFFF;
+    --color-surface-sunken: #F8FAFC;
+    --color-surface-elevated: #FFFFFF;
+
+    /* ---- Text Hierarchy ---- */
+    --color-foreground: #0F172A;
+    --color-foreground-secondary: #334155;
+    --color-muted: #64748B;
+    --color-muted-foreground: #94A3B8;
+
+    /* ---- Borders ---- */
+    --color-border: #E2E8F0;
+    --color-border-subtle: #F1F5F9;
+
+    /* ---- Semantic Status Colors ---- */
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+    --color-info: #3B82F6;
+
+    /* ---- Legacy aliases (backward compat) ---- */
+    --color-primary-hover: #FA5252;
+    --color-primary-dark: #E03131;
+    --color-navy: #1E293B;
+    --color-slate-canvas: #F8FAFC;
+
+    /* ---- Radius Scale ----
+       sm: inputs, badges, small interactive elements
+       md: buttons, cards, dropdowns
+       lg: modals, toasts, image containers
+       xl: page-level cards (login, booking widget)
+       full: pills, avatars, tags
+    */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* ---- Shadow Scale ---- */
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+    --shadow-card-hover: 0 4px 6px -1px rgb(0 0 0 / 0.06), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    --shadow-dropdown: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+    --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.06);
+    --shadow-primary: 0 4px 14px -3px rgb(255 101 101 / 0.3);
+
+    /* ---- Font Stack ---- */
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* ============================================================
+   Dark Mode Token Overrides (prepared, not fully deployed)
+   Activated via OS preference or manual toggle
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-surface: #0F172A;
+        --color-surface-sunken: #020617;
+        --color-surface-elevated: #1E293B;
+        --color-foreground: #F8FAFC;
+        --color-foreground-secondary: #CBD5E1;
+        --color-muted: #94A3B8;
+        --color-muted-foreground: #64748B;
+        --color-border: #334155;
+        --color-border-subtle: #1E293B;
+    }
 }

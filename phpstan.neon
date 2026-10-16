@@ -8,8 +8,11 @@ parameters:
         - database
         - routes
 
+    excludePaths:
+        - database/migrations/*_create_permission_tables.php
+
     bootstrapFiles:
-        - vendor/larastan/larastan/bootstrap.php
+        - tests/phpstan-bootstrap.php
 
     # Level max is the highest level of static analysis
     level: max
