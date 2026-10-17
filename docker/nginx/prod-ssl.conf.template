@@ -49,6 +49,14 @@ server {
         add_header Cache-Control "public, max-age=31536000, immutable";
     }
 
+    # Storage public uploads
+    location /storage/ {
+        alias /var/www/html/storage/app/public/;
+        expires 30d;
+        access_log off;
+        add_header Cache-Control "public";
+    }
+
     location / {
         try_files \$uri \$uri/ /index.php?\$query_string;
     }
