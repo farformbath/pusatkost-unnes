@@ -12,6 +12,8 @@ services:
       - MEILISEARCH_HOST=http://meilisearch:7700
     volumes:
       - ./.env:/var/www/html/.env:ro
+      - ./database/migrations:/var/www/html/database/migrations:ro
+      - ./database/seeders:/var/www/html/database/seeders:ro
       - storage_data:/var/www/html/storage
     depends_on:
       postgres:
@@ -100,6 +102,8 @@ services:
       - MEILISEARCH_HOST=http://meilisearch:7700
     volumes:
       - ./.env:/var/www/html/.env:ro
+      - ./database/migrations:/var/www/html/database/migrations:ro
+      - ./database/seeders:/var/www/html/database/seeders:ro
       - storage_data:/var/www/html/storage
     command: php artisan queue:work --verbose --tries=3 --timeout=90
     depends_on:
@@ -123,6 +127,8 @@ services:
       - MEILISEARCH_HOST=http://meilisearch:7700
     volumes:
       - ./.env:/var/www/html/.env:ro
+      - ./database/migrations:/var/www/html/database/migrations:ro
+      - ./database/seeders:/var/www/html/database/seeders:ro
     command: ["sh", "-c", "while true; do php artisan schedule:run --verbose --no-interaction; sleep 60; done"]
     depends_on:
       postgres:

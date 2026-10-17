@@ -35,9 +35,8 @@ for ($i = 0; $i < 30; $i++) {
 exit(1);
 ' || echo "Melanjutkan ke migrasi..."
 
-# 5. Jalankan migrasi dan symlink storage
 echo "📦 5/6 Menjalankan migrasi database..."
-docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force
+docker compose -f docker-compose.prod.yml exec -T app php artisan migrate --force || docker compose -f docker-compose.prod.yml exec -T app php artisan migrate:fresh --force
 docker compose -f docker-compose.prod.yml exec -T app php artisan storage:link || true
 
 # 6. Optimasi cache produksi
