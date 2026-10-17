@@ -15,12 +15,17 @@ docker compose -f docker-compose.prod.yml build --pull
 echo "🔄 3/6 Menyalakan container services..."
 docker compose -f docker-compose.prod.yml up -d
 
-# 4. Tunggu kesiapan database
-echo "⏳ 4/6 Menunggu database siap..."
+# 4. Bersihkan config cache lama & tunggu kesiapan database
+echo "⏳ 4/6 Menyiapkan konfigurasi & koneksi database..."
+docker compose -f docker-compose.prod.yml exec -T app php artisan config:clear || true
+
 docker compose -f docker-compose.prod.yml exec -T app php -r '
+require "vendor/autoload.php";
+$app = require_once "bootstrap/app.php";
+$app->make("Illuminate\Contracts\Console\Kernel")->bootstrap();
 for ($i = 0; $i < 30; $i++) {
     try {
-        DB::connection()->getPdo();
+        Illuminate\Support\Facades\DB::connection()->getPdo();
         echo "Database connected!\n";
         exit(0);
     } catch (\Throwable $e) {
@@ -28,7 +33,7 @@ for ($i = 0; $i < 30; $i++) {
     }
 }
 exit(1);
-' || echo "Lanjut ke migrasi..."
+' || echo "Melanjutkan ke migrasi..."
 
 # 5. Jalankan migrasi dan symlink storage
 echo "📦 5/6 Menjalankan migrasi database..."
