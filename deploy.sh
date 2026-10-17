@@ -5,6 +5,7 @@ echo "🚀 [UNNESKost v3] Memulai Deployment Production..."
 
 # 1. Pull pembaruan terbaru dari GitHub
 echo "📥 1/7 Menarik kode terbaru dari Git..."
+git checkout -f
 git pull origin main
 
 # 2. Build image container (Multi-stage: Node build + Composer build + PHP-FPM)
