@@ -240,22 +240,25 @@ class NesaToolService
         /** @var list<string> $listingIds */
         $listingIds = [];
 
-        /** @var list<array{id: string, name: string, slug: string, gender_type: string, area: string, address: string, starting_price: int, formatted_starting_price: string, rating_avg: float, facilities: list<string>}> $listings */
+        /** @var list<array{id: string, name: string, slug: string, gender_type: string, area: string, starting_price: int, rating_avg: float, facilities: list<string>}> $listings */
         $listings = [];
 
-        foreach ($paginator->items() as $listing) {
+        $items = $paginator->items();
+        foreach ($items as $listing) {
             $listingIds[] = (string) $listing->id;
+        }
+
+        // Limit listings sent in LLM text context to top 4 for fast token generation
+        foreach (array_slice($items, 0, 4) as $listing) {
             $listings[] = [
                 'id' => (string) $listing->id,
                 'name' => (string) $listing->name,
                 'slug' => (string) $listing->slug,
                 'gender_type' => $listing->gender_type->value,
                 'area' => (string) $listing->area,
-                'address' => (string) $listing->address,
                 'starting_price' => $listing->starting_price,
-                'formatted_starting_price' => $listing->formatted_starting_price,
                 'rating_avg' => $listing->rating_avg,
-                'facilities' => $listing->facilities->pluck('name')->values()->all(),
+                'facilities' => $listing->facilities->take(4)->pluck('name')->values()->all(),
             ];
         }
 

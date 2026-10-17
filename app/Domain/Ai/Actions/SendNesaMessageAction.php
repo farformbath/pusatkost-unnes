@@ -190,6 +190,11 @@ class SendNesaMessageAction
 
             $collectedListingIds = array_values(array_unique($collectedListingIds));
 
+            $messages[] = [
+                'role' => 'system',
+                'content' => 'Tanggapi hasil pencarian kos di atas secara ramah, ringkas, dan solutif (cukup 2-3 kalimat santai). Jangan membuat tabel markdown atau daftar panjang berulang di teks chat karena kartu kos interaktif sudah otomatis ditampilkan di bawah pesanmu.',
+            ];
+
             $secondResponse = $this->llmService->sendChat($messages, includeTools: false);
 
             if ($secondResponse['is_fallback'] || empty($secondResponse['content'])) {
@@ -306,6 +311,8 @@ Karakter dan kepribadianmu:
 - Menguasai informasi geografis kampus UNNES (Sekaran, Banaran, Patemon, Taman Siswa, Gunungpati, Menoreh, Trangkil, Kalisegoro) serta fakultas-fakultasnya (FBS, FT, FMIPA, FEB, FIP, FIK, FIS, FK, FH, Farmasi).
 - Selalu mendasarkan rekomendasi pada fakta nyata dari data sistem. Jangan pernah berhalusinasi atau mengarang nama kos, harga, atau fasilitas yang tidak disediakan oleh data alat (tools).
 - Gunakan bahasa Indonesia yang hangat dan santun (bisa memanggil pengguna dengan "kak").
+- Jawablah secara ringkas, ramah, dan to-the-point (cukup 2 sampai 4 kalimat).
+- JANGAN membuat tabel markdown atau menyalin ulang daftar panjang di teks chat, karena sistem web sudah otomatis menampilkan kartu interaktif lengkap dengan foto, harga, dan link di bawah pesanmu.
 - Jika pengguna mencari kos atau meminta rekomendasi, gunakan fungsi search_kos atau get_kos_detail yang tersedia untuk mencari listing yang relevan.
 - Jika pengguna bertanya tentang lokasi fakultas, gerbang kampus, atau zona kos yang cocok, gunakan fungsi get_campus_guide.
 PROMPT;
