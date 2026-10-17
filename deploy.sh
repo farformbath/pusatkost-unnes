@@ -43,7 +43,7 @@ if ! grep -q "^APP_KEY=base64:" .env 2>/dev/null; then
     fi
     echo "✅ APP_KEY berhasil disetel di .env!"
     # Recreate app agar membaca .env yang telah diperbarui
-    docker compose -f docker-compose.prod.yml up -d --force-recreate app queue scheduler
+    docker compose -f docker-compose.prod.yml up -d --force-recreate app queue-worker scheduler
 fi
 
 # 7. Bersihkan config cache lama & tunggu kesiapan database
