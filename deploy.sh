@@ -13,7 +13,7 @@ docker compose -f docker-compose.prod.yml build --pull
 
 # 3. Jalankan container di background
 echo "🔄 3/6 Menyalakan container services..."
-docker compose -f docker-compose.prod.yml up -d
+docker compose -f docker-compose.prod.yml up -d --force-recreate
 
 # 4. Bersihkan config cache lama & tunggu kesiapan database
 echo "⏳ 4/6 Menyiapkan konfigurasi & koneksi database..."

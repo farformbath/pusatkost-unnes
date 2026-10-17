@@ -6,6 +6,10 @@ services:
     restart: always
     working_dir: /var/www/html
     env_file: .env
+    environment:
+      - DB_HOST=postgres
+      - REDIS_HOST=redis
+      - MEILISEARCH_HOST=http://meilisearch:7700
     volumes:
       - ./.env:/var/www/html/.env:ro
       - storage_data:/var/www/html/storage
@@ -90,6 +94,10 @@ services:
     restart: always
     working_dir: /var/www/html
     env_file: .env
+    environment:
+      - DB_HOST=postgres
+      - REDIS_HOST=redis
+      - MEILISEARCH_HOST=http://meilisearch:7700
     volumes:
       - ./.env:/var/www/html/.env:ro
       - storage_data:/var/www/html/storage
@@ -109,6 +117,10 @@ services:
     restart: always
     working_dir: /var/www/html
     env_file: .env
+    environment:
+      - DB_HOST=postgres
+      - REDIS_HOST=redis
+      - MEILISEARCH_HOST=http://meilisearch:7700
     volumes:
       - ./.env:/var/www/html/.env:ro
     command: ["sh", "-c", "while true; do php artisan schedule:run --verbose --no-interaction; sleep 60; done"]
