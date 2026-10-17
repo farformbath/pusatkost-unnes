@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table): void {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignUuid('listing_id')->constrained('listings')->cascadeOnDelete();
             $table->foreignUuid('booking_id')->nullable()->constrained('bookings')->nullOnDelete();
             $table->unsignedTinyInteger('rating'); // 1 to 5
